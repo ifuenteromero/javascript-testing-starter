@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import { fizzBuzz, max } from '../src/intro';
+import { calculateAverage, fizzBuzz, max } from '../src/intro';
 
 describe('max', () => {
 	it('should return the first argument if it is greater', () => {
@@ -49,5 +49,38 @@ describe('fizzBuzz', () => {
 	});
 	it('should return arg as a string if it is no divisible by 3 or 5', () => {
 		expect(fizzBuzz(4)).toBe('4');
+	});
+});
+
+describe('calculateAverage', () => {
+	it('should return NaN if numbers is an empty array', () => {
+		expect(calculateAverage([])).toBe(NaN);
+	});
+	it('should return NaN if is not an array', () => {
+		expect(calculateAverage('2')).toBe(NaN);
+	});
+	it('should return NaN if is not an array', () => {
+		expect(calculateAverage({ a: 2 })).toBe(NaN);
+	});
+	it('should return NaN if some element in numbers is not a number or a string number', () => {
+		expect(calculateAverage([false])).toBe(NaN);
+	});
+	it('should return NaN if some element in numbers is not a number or a finite number', () => {
+		expect(calculateAverage([1, Infinity])).toBe(NaN);
+	});
+	it('should return NaN if some element in numbers is not a number or a finite number', () => {
+		expect(calculateAverage([1, NaN, []])).toBe(NaN);
+	});
+	it('should return the average if is a string number', () => {
+		expect(calculateAverage(['1'])).toBe(1);
+	});
+	it('should return the average if numbers has a string number', () => {
+		expect(calculateAverage([2, '1'])).toBe(1.5);
+	});
+	it('should return the average if numbers has a string number', () => {
+		expect(calculateAverage([2, '1', -3])).toBe(0);
+	});
+	it('should return the average if numbers has a string number', () => {
+		expect(calculateAverage([2, '1', -3, 8, 0, 2])).toBe(5 / 3);
 	});
 });
