@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import { calculateAverage, fizzBuzz, max } from '../src/intro';
+import { calculateAverage, factorial, fizzBuzz, max } from '../src/intro';
 
 describe('max', () => {
 	it('should return the first argument if it is greater', () => {
@@ -82,5 +82,74 @@ describe('calculateAverage', () => {
 	});
 	it('should return the average if numbers has a string number', () => {
 		expect(calculateAverage([2, '1', -3, 8, 0, 2])).toBe(5 / 3);
+	});
+});
+
+describe('factorial', () => {
+	it('should return NaN if argument is an empty array', () => {
+		expect(factorial([])).toBe(NaN);
+	});
+	it('should return NaN if argument is an array of two numbers', () => {
+		expect(factorial([-1, 2])).toBe(NaN);
+	});
+	it('should return NaN if argument is an object', () => {
+		expect(factorial({ a: 2 })).toBe(NaN);
+	});
+	it('should return NaN if argument is a boolean', () => {
+		expect(factorial(false)).toBe(NaN);
+	});
+	it('should return NaN if argument is a string but not a string number', () => {
+		expect(factorial('hola')).toBe(NaN);
+	});
+	it('should return NaN if argument is null', () => {
+		expect(factorial(null)).toBe(NaN);
+	});
+	it('should return NaN if argument is undefined', () => {
+		expect(factorial(undefined)).toBe(NaN);
+	});
+	it('should return NaN if argument is a function', () => {
+		expect(factorial((n) => n + 1)).toBe(NaN);
+	});
+	it('should return undefined if argument is Infinity', () => {
+		expect(factorial(Infinity)).toBe(undefined);
+	});
+	it('should return undefined if argument is NaN', () => {
+		expect(factorial(NaN)).toBe(undefined);
+	});
+	it('should return undefined if argument is a float', () => {
+		expect(factorial(1.2)).toBe(undefined);
+	});
+	it('should return undefined if argument is an integer less than 0', () => {
+		expect(factorial(-2)).toBe(undefined);
+	});
+	it('should return 1 if n is 0', () => {
+		expect(factorial(0)).toBe(1);
+	});
+	it('should return 1 if n is `0`', () => {
+		expect(factorial('0')).toBe(1);
+	});
+	it('should return 1 if n is 1', () => {
+		expect(factorial(1)).toBe(1);
+	});
+	it('should return 1 if n is `1`', () => {
+		expect(factorial('1')).toBe(1);
+	});
+	it('should return 2 if n is 2', () => {
+		expect(factorial(2)).toBe(2);
+	});
+	it('should return 2 if n is ``2``', () => {
+		expect(factorial('2')).toBe(2);
+	});
+	it('should return 6 if n is 3', () => {
+		expect(factorial(3)).toBe(6);
+	});
+	it('should return 6 if n is ``3``', () => {
+		expect(factorial('3')).toBe(6);
+	});
+	it('should return 120 if n is 5', () => {
+		expect(factorial(5)).toBe(120);
+	});
+	it('should return 720 if n is 6', () => {
+		expect(factorial(6)).toBe(720);
 	});
 });

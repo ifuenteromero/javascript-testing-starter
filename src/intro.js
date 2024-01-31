@@ -18,3 +18,16 @@ export const calculateAverage = (numbers) => {
 	}, 0);
 	return sum / numbers.length;
 };
+
+export const factorial = (n) => {
+	if (typeof n !== 'number' && typeof n !== 'string') return NaN;
+	// quedan strings, numbers, Infinity, NaN
+	if (Number.isNaN(n)) return undefined; // fuera NaN
+	const float = parseFloat(n);
+	if (isNaN(float)) return NaN; // fuera strings no numbers 'hola'
+	if (!Number.isInteger(float)) return undefined; // fuera Infinity y float
+	const number = parseInt(n);
+	if (number < 0) return undefined;
+	if (number === 0) return 1;
+	return number * factorial(number - 1);
+};
