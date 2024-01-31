@@ -162,6 +162,57 @@ describe('test suite', () => {
 	});
 });
 
+describe('String bad and good assertions', () => {
+	const result = 'The requested file was not found';
+	it('Loose assertion (too general)', () => {
+		expect(result).toBeDefined();
+	});
+	it('Tight (too specific)', () => {
+		expect(result).toBe('The requested file was not found');
+	});
+	it('Better assertion but its case sensitive', () => {
+		expect(result).toMatch('not found');
+	});
+	it('Better assertion case insensitive', () => {
+		expect(result).toMatch(/not found/i);
+	});
+});
+
+describe('Arrays bad and good assertions', () => {
+	const result = [1, 2, 3];
+	it('Loose assertion (too general)', () => {
+		expect(result).toBeDefined(); // solo no pasa si es undefined
+	});
+	it('Tight (too specific)', () => {
+		expect(result).toEqual([1, 2, 3]); // toBe no pasa porque son valores por referencia
+	});
+	it('Better assertion sin orden', () => {
+		expect(result).toEqual(expect.arrayContaining([3, 1]));
+	});
+	it('Length Tight (too specific)', () => {
+		expect(result).toHaveLength(3);
+	});
+	it('Length sometimes, better assertion', () => {
+		expect(result.length).toBeGreaterThan(0);
+	});
+});
+
+describe('Objects bad and good assertions', () => {
+	const result = { age: 40, name: 'Irene', city: 'Madrid' };
+	it('Tight assertion ', () => {
+		expect(result).toEqual({ city: 'Madrid', age: 40, name: 'Irene' });
+	});
+	it('Aserción más débil', () => {
+		expect(result).toMatchObject({ name: 'Irene', city: 'Madrid' });
+	});
+	it('El objeto tiene una clave', () => {
+		expect(result).toHaveProperty('name');
+	});
+	it('La clave name del objeto es un string', () => {
+		expect(typeof result.name).toBe('string');
+	});
+});
+
 // Equality
 // toBe()
 // toEqual()
