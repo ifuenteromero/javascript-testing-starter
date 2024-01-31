@@ -153,3 +153,40 @@ describe('factorial', () => {
 		expect(factorial(6)).toBe(720);
 	});
 });
+
+describe('test suite', () => {
+	it('test case', () => {
+		const result = { name: 'Irene', age: 40 };
+		expect(result).toStrictEqual({ age: 40, name: 'Irene' });
+		expect(result).toEqual({ age: 40, name: 'Irene' });
+	});
+});
+
+// Equality
+// toBe()
+// toEqual()
+
+// Truthiness
+// toBeTruthy()
+// toBeFalsy()
+// toBeNull()
+// toBeUndefined()
+// toBeDefined()
+
+// Numbers
+// toBeGreaterThan()
+// toBeGreaterThanOrEqualTo()
+// toBeLessThan()
+// toBeLessThanOrEqualTo()
+// toBeCloseTo()
+
+// Strings
+// toMatch()
+
+// Objects
+// toMatchObject()
+// toHaveProperty()
+
+// Arrays
+// toContain()
+// toHaveLength()
