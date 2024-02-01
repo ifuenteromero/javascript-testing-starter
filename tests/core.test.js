@@ -110,6 +110,28 @@ describe('isPriceInRange', () => {
 	});
 });
 
+describe('isPriceInRange2', () => {
+	it.each([
+		{ price: -10, min: 0, max: 100, result: false },
+
+		{ price: 200, min: 0, max: 100, result: false },
+		{ price: 50, min: 0, max: 100, result: true },
+		{ price: 0, min: 0, max: 100, result: true },
+		{ price: 100, min: 0, max: 100, result: true },
+		{ price: 100, min: 100, max: 100, result: true },
+		{ price: -10, min: 100, max: 0, result: false },
+		{ price: 200, min: 100, max: 0, result: false },
+		{ price: 50, min: 100, max: 0, result: false },
+		{ price: 0, min: 100, max: 0, result: false },
+		{ price: 100, min: 100, max: 0, result: false },
+	])(
+		'should return $result for price $price, min $min, max $max',
+		({ price, min, max, result }) => {
+			expect(isPriceInRange(price, min, max)).toBe(result);
+		}
+	);
+});
+
 describe('isValidUsername', () => {
 	const minLength = 5;
 	const maxLength = 15;
