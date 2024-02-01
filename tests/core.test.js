@@ -3,6 +3,7 @@ import {
 	calculateDiscount,
 	getCoupons,
 	isPriceInRange,
+	isValidUsername,
 	validateUserInput,
 } from '../src/core';
 
@@ -105,5 +106,39 @@ describe('isPriceInRange', () => {
 		expect(isPriceInRange(50, 100, 0)).toBe(false);
 		expect(isPriceInRange(0, 100, 0)).toBe(false);
 		expect(isPriceInRange(100, 100, 0)).toBe(false);
+	});
+});
+
+describe('isValidUsername', () => {
+	const minLength = 5;
+	const maxLength = 15;
+	it('should return false if username is too short', () => {
+		expect(isValidUsername('A'.repeat(minLength - 1))).toBe(false);
+	});
+	it('should return false if username is too long', () => {
+		expect(isValidUsername('A'.repeat(maxLength + 1))).toBe(false);
+	});
+	it('should return true if usernameis is at the min or max length', () => {
+		expect(isValidUsername('A'.repeat(minLength))).toBe(true);
+		expect(isValidUsername('A'.repeat(maxLength))).toBe(true);
+	});
+	it('should return true if usernameis is within the length constraint', () => {
+		expect(isValidUsername('A'.repeat(minLength + 1))).toBe(true);
+		expect(isValidUsername('A'.repeat(maxLength - 1))).toBe(true);
+	});
+	it('should return true if is a valid range', () => {
+		expect(typeof minLength === 'number').toBe(true);
+		expect(typeof maxLength === 'number').toBe(true);
+		expect(isFinite(minLength)).toBe(true);
+		expect(isFinite(maxLength)).toBe(true);
+		expect(Number.isInteger(minLength)).toBe(true);
+		expect(Number.isInteger(maxLength)).toBe(true);
+		expect(minLength).toBeGreaterThan(0);
+		expect(maxLength).toBeGreaterThan(0);
+		expect(maxLength - minLength).toBeGreaterThan(0);
+	});
+	it('should return false if is a invalid username', () => {
+		expect(isValidUsername(null)).toBe(false);
+		expect(isValidUsername(undefined)).toBe(false);
 	});
 });
