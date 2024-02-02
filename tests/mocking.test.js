@@ -1,8 +1,10 @@
 import { vi, it, expect, describe } from 'vitest';
-import { getPriceInCurrency } from '../src/mocking';
+import { getPriceInCurrency, getShippingInfo } from '../src/mocking';
 import { getExchangeRate } from '../src/libs/currency';
+import { getShippingQuote } from '../src/libs/shipping';
 
 vi.mock('../src/libs/currency');
+vi.mock('../src/libs/shipping');
 
 // A mock function is a function that imitates the behaviour of a real function
 // We use them to test a unit in asolation
@@ -57,5 +59,24 @@ describe('getPriceInCurrency', () => {
 		vi.mocked(getExchangeRate).mockReturnValue(1.5);
 		const price = getPriceInCurrency(10, 'AUD');
 		expect(price).toBe(15);
+	});
+});
+
+describe('getShippingInfo', () => {
+	it('should return shipping unavailable if quote cannot be fetched', () => {
+		vi.mocked(getShippingQuote).mockReturnValue(null);
+		const info = getShippingInfo('London');
+		expect(info).toMatch(/unavailable/i);
+	});
+	it('should return shipping info if quote can be fetched', () => {
+		vi.mocked(getShippingQuote).mockReturnValue({
+			cost: 11,
+			estimatedDays: 2,
+		});
+		const info = getShippingInfo('London');
+		expect(info).toMatch('$11');
+		expect(info).toMatch(/\$11/i);
+		expect(info).toMatch(/2 days/i);
+		expect(info).toMatch(/shipping cost: \$11 \(2 days\)/i);
 	});
 });
