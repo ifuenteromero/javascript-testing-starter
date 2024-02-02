@@ -1,4 +1,8 @@
 import { vi, it, expect, describe } from 'vitest';
+import { getPriceInCurrency } from '../src/mocking';
+import { getExchangeRate } from '../src/libs/currency';
+
+vi.mock('../src/libs/currency');
 
 // A mock function is a function that imitates the behaviour of a real function
 // We use them to test a unit in asolation
@@ -45,5 +49,13 @@ describe('sendText', () => {
 		const result = sendText('message');
 		expect(sendText).toHaveBeenCalledWith('message');
 		expect(result).toBe('ok');
+	});
+});
+
+describe('getPriceInCurrency', () => {
+	it('should return the price in the current currency', () => {
+		vi.mocked(getExchangeRate).mockReturnValue(1.5);
+		const price = getPriceInCurrency(10, 'AUD');
+		expect(price).toBe(15);
 	});
 });
