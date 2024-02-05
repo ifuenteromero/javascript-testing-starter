@@ -1,4 +1,4 @@
-import { vi, it, expect, describe, beforeEach } from 'vitest';
+import { vi, it, expect, describe } from 'vitest';
 import {
 	getDiscount,
 	getPriceInCurrency,
@@ -40,12 +40,12 @@ describe('test suite', () => {
 		const greet = vi.fn(); // esto retorna una mock function
 		// si la ejecutamos greet() por defecto retorna undefined
 		greet.mockReturnValue('Hello');
-		const result = greet(); //*1
+		const result = greet(); //  *1
 		console.log({ result });
 
 		const promise = vi.fn();
 		promise.mockResolvedValue('Irene');
-		promise().then((resultPromise) => console.log({ resultPromise })); //*2
+		promise().then((resultPromise) => console.log({ resultPromise })); //   *2
 
 		///
 		const sum = vi.fn();
@@ -54,14 +54,14 @@ describe('test suite', () => {
 		console.log({ resultSum });
 
 		//
-		expect(greet).toHaveBeenCalled(); //*1
-		expect(promise).toHaveBeenCalled(); //*2
+		expect(greet).toHaveBeenCalled(); //    *1
+		expect(promise).toHaveBeenCalled(); //  *2
 		expect(sum).toHaveBeenCalled(); // 3
 
 		expect(sum).toHaveBeenCalledWith(102);
 
-		expect(greet).toHaveBeenCalledOnce(); //*1
-		expect(promise).toHaveBeenCalledOnce(); //*2
+		expect(greet).toHaveBeenCalledOnce(); //    *1
+		expect(promise).toHaveBeenCalledOnce(); //  *2
 		expect(sum).toHaveBeenCalledOnce(); // 3
 	});
 });
@@ -141,8 +141,8 @@ describe('submitOrder', () => {
 
 describe('signUp', () => {
 	// beforeEach(() => {
-	// 	vi.mocked(sendEmail).mockClear();
-	// 	vi.clearAllMocks();
+	//  vi.mocked(sendEmail).mockClear();
+	//  vi.clearAllMocks();
 	// });
 	const email = 'name@domain.com';
 	it('should return true if a valid email is given', async () => {
