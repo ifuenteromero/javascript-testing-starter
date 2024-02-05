@@ -1,4 +1,4 @@
-import { vi, it, expect, describe } from 'vitest';
+import { vi, it, expect, describe, beforeEach } from 'vitest';
 import {
 	getPriceInCurrency,
 	getShippingInfo,
@@ -138,6 +138,10 @@ describe('submitOrder', () => {
 });
 
 describe('signUp', () => {
+	// beforeEach(() => {
+	// 	vi.mocked(sendEmail).mockClear();
+	// 	vi.clearAllMocks();
+	// });
 	const email = 'name@domain.com';
 	it('should return true if a valid email is given', async () => {
 		const result = await signUp(email);
@@ -149,7 +153,7 @@ describe('signUp', () => {
 	});
 	it('should send the welcome email if email is valid', async () => {
 		await signUp(email);
-		expect(sendEmail).toHaveBeenCalled();
+		expect(sendEmail).toHaveBeenCalledOnce();
 		const [[emailTo, message]] = vi.mocked(sendEmail).mock.calls;
 		expect(emailTo).toBe(email);
 		expect(message).toMatch(/welcome/i);
