@@ -22,3 +22,14 @@ Ctrl + P => @ symbols
 Ctrl - P => : linea
 "Alt" + "=>" => Go Forward
 "Alt" + "<=" => Go Back
+
+Core unit testing techniques
+
+- Characteristics of good tests
+- Using matchers
+- Writing good assertions
+- Positive and negative testing
+- Boundary testing
+- Writing parameterized tests
+- Testing asynchronous code
+- Setup and teardown (Setup: code that runs before each test. Teardown: code that runs after each test.)
