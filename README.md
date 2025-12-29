@@ -33,3 +33,32 @@ Core unit testing techniques
 - Writing parameterized tests
 - Testing asynchronous code
 - Setup and teardown (Setup: code that runs before each test. Teardown: code that runs after each test.)
+
+No tests > bad tests.
+Tests must be maintainable, robust, and trustworthy.
+
+Maintainable:
+
+- Have a clear name.
+- Test a single behavior.
+- Are small (ideally, less than 10 lines).
+- Have clear variables/constants.
+- Are properly formatted.
+
+Robust tests:
+
+- A test that is resilient to changes in the code. That means when we refactor our code but keep the functionality, our tests should still pass.
+- Test the behavior, not the functionality
+- Avoid tight assertions. We should not write assertions against exact texts or error messages, because texts and error messages can change.
+
+Trustworthy:
+
+- A test that can be trusted.
+- The code works. If a test fails, we must be sure the problem is in the code, not in the test.
+- No false positives.
+- Validate the correct behavior.
+- Test boundary conditions.
+- Are deterministic.
+- Are not dependent on random data.
+- Are not dependent on the current date/time.
+- Are not dependent on global state.
